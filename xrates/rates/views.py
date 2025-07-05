@@ -8,14 +8,14 @@ def rates_view(request):
         'exchange?json',
     ).json()
 
-    rates = {
-        'USD': all_rates[32],
-        'EUR': all_rates[39],
-        'PLN': all_rates[41],
-        'GBP': all_rates[31],
-        'CHF': all_rates[26],
-        'JPY': all_rates[12],
-        'CZK': all_rates[5],
-    }
+    rates = [
+        all_rates[32],  # USD
+        all_rates[39],  # EUR
+        all_rates[41],  # PLN
+        all_rates[31],  # GBP
+        all_rates[26],  # CHF
+        all_rates[12],  # JPY
+        all_rates[5],   # CZK
+    ]
     
-    return render(request, 'rates/rates.html', {'rates': list(rates.values())})
+    return render(request, 'rates/rates.html', {'rates': rates})
