@@ -8,6 +8,7 @@ def login_view(request):
         login_form = AuthenticationForm(data=request.POST)
         if login_form.is_valid():
             login(request, login_form.get_user())
+            return redirect('rates:rates')
     else:
         login_form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': login_form})
@@ -18,7 +19,7 @@ def register_view(request):
         register_form = UserCreationForm(request.POST)
         if register_form.is_valid():
             login(request, register_form.save())
-            return redirect('users:register')
+            return redirect('rates:rates')
     else:
         register_form = UserCreationForm()
 
