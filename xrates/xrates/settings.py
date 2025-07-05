@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'rates.apps.RatesConfig',
+    'converter.apps.ConverterConfig',
 ]
 
 MIDDLEWARE = [
