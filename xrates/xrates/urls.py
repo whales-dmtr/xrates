@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('rates.urls')),
     path('admin/', admin.site.urls),
     path('users/', include(('users.urls', 'users'))),
-    path('', include(('rates.urls', 'rates'))),
-    path('converter/', include(('converter.urls', 'converter'))),
+    path('converter/', include('converter.urls')),
 ]
