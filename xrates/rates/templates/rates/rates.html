@@ -1,20 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 <title>Rates</title>
 {% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'rates/styles/rates.css' %}">
+{% endblock %}
 
 {% block content%}
 <h1>Rates</h1>
-<table border='1px solid black'>
+<table class="rates-table">
     <tr>
-        <th>Currency</th>
-        <th>Rate</th>
+        <th class="header-fields">Currency</th>
+        <th class="header-fields">Rate</th>
     </tr>
     {% for cur in rates %}
     <tr>
-        <td>{{ cur.cc }}</td>
-        <td>{{ cur.rate }}</td>
+        <td class="fields">{{ cur.cc }}</td>
+        <td class="fields">{{ cur.rate }}</td>
     </tr>
     {% endfor %}
 </table>

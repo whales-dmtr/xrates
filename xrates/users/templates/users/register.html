@@ -5,12 +5,12 @@
 <title>Register</title>
 {% endblock %}
 {% block links %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/styles/register.css' %}">
+<link rel="stylesheet" href="{% static 'users/styles/register.css' %}">
 {% endblock %}
 
 {% block content%}
 <h1>Register</h1>
-<form action="/users/register" method="POST">
+<form action={% url "users:register" %} method="POST">
     {% csrf_token %}
     {{ form }}
     <br>
