@@ -19,7 +19,7 @@ def converter_view(request):
         currency = request.POST['currency']
         rate = get_currency_rate(currency)
         hryvnias_amount = request.POST['hryvnias_amount']
-        result = float(hryvnias_amount) / float(rate)
+        result = round(float(hryvnias_amount) / float(rate), 2)
         
     converter_form = ConverterForm()
 
@@ -27,7 +27,7 @@ def converter_view(request):
         request, 
         'converter/converter.html', 
         {'form': converter_form, 
-         'result': round(result, 2), 
+         'result': result, 
          'currency': currency,
          'hryvnias_amount': hryvnias_amount}
     )
