@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rates</title>
-</head>
+{% block title %}
+<title>Rates</title>
+{% endblock %}
 
-<body>
-    <h1>Rates</h1>
-    <table border='1px solid black'>
-        <tr>
-            <th>Currency</th>
-            <th>Rate</th>
-        </tr>
-        {% for cur in rates %}
-        <tr>
-            <td>{{ cur.cc }}</td>
-            <td>{{ cur.rate }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-
-</html>
+{% block content%}
+<h1>Rates</h1>
+<table border='1px solid black'>
+    <tr>
+        <th>Currency</th>
+        <th>Rate</th>
+    </tr>
+    {% for cur in rates %}
+    <tr>
+        <td>{{ cur.cc }}</td>
+        <td>{{ cur.rate }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

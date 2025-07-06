@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converter</title>
-</head>
+{% block title %}
+<title>Converter</title>
+{% endblock %}
 
-<body>
-    <h1>Converter</h1>
-    <form action='/converter/' method='post'>
-        {% csrf_token %}
-        {{ form }}
-        <button>Submit</button>
-    </form>
-    {% if result %}
-        <p>Converted amount: {{ hryvnias_amount }} UAH = {{ result }} {{ currency }}</p>
-    {% endif %}
-</body>
-
-</html>
+{% block content%}
+<h1>Converter</h1>
+<form action='/converter/' method='post'>
+    {% csrf_token %}
+    {{ form }}
+    <button>Submit</button>
+</form>
+{% if result %}
+    <p>Converted amount: {{ hryvnias_amount }} UAH = {{ result }} {{ currency }}</p>
+{% endif %}
+{% endblock %}
