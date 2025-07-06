@@ -21,5 +21,5 @@ urlpatterns = [
     path('', include('rates.urls')),
     path('admin/', admin.site.urls),
     path('users/', include(('users.urls', 'users'))),
-    path('converter/', include('converter.urls')),
+    path('converter/', include(('converter.urls', 'converter'))),
 ]

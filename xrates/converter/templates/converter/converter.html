@@ -6,7 +6,7 @@
 
 {% block content%}
 <h1>Converter</h1>
-<form action={% url "converter" %} method='post'>
+<form action={% url "converter:converter" %} method='post'>
     {% csrf_token %}
     {{ form }}
     <button>Submit</button>
