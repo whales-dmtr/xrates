@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
+{% block title %}
+<title>Register</title>
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/styles/register.css' %}">
+{% endblock %}
 
-<body>
-    <h1>Register</h1>
-    <form action="/users/register" method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <br>
-        <button>Submit</button>
-    </form>
-</body>
-
-</html>
+{% block content%}
+<h1>Register</h1>
+<form action="/users/register" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <button>Submit</button>
+</form>
+{% endblock %}
