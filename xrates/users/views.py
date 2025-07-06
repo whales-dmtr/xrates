@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
+from django.core.exceptions import PermissionDenied
 
 
 def login_view(request):
@@ -27,6 +28,8 @@ def register_view(request):
 
 
 def logout_view(request):
+    if request.user.is_anonymous:
+        raise PermissionDenied()
     if request.method == 'POST':
         logout(request)
         return redirect('rates')

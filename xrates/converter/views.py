@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.core.exceptions import PermissionDenied
 import requests
 
 from converter.forms import ConverterForm
@@ -13,6 +14,8 @@ def get_currency_rate(currency):
     return rate['rate']
 
 def converter_view(request):
+    if request.user.is_anonymous:
+        raise PermissionDenied()
     hryvnias_amount, result, currency = None, None, None
 
     if request.method == 'POST':
