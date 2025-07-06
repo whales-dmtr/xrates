@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Rates</title>
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'converter/styles/history.css' %}">
+{% endblock %}
+
+{% block content%}
+<h1>Convert History</h1>
+<table class="history-table">
+    <tr>
+        <th class="header-fields">Convert Time</th>
+        <th class="header-fields">UAH amount</th>
+        <th class="header-fields">Converted value</th>
+        <th class="header-fields">Rate</th>
+    </tr>
+    {% for conv in history %}
+    <tr>
+        <td class="fields">{{ conv.convert_time }}</td>
+        <td class="fields">{{ conv.uah_amount }}</td>
+        <td class="fields">{{ conv.converted_value }} {{ conv.converted_currency }}</td>
+        <td class="fields">{{ conv.rate }}</td>
+    </tr>
+    {% endfor %}
+</table> 
+{% endblock %}

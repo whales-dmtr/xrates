@@ -1,3 +1,4 @@
 from django.contrib import admin
+from converter.models import ConverterHistory
 
-# Register your models here.
+admin.site.register(ConverterHistory)
