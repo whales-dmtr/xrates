@@ -1,21 +1,19 @@
 from django.shortcuts import render
 import requests
+from django.core.cache import cache
 
 
 def rates_view(request):
-    all_rates = requests.get(
-        url='https://bank.gov.ua/NBUStatService/v1/statdirectory/' \
-        'exchange?json',
-    ).json()
+    rates = cache.get('rates')
+    if rates is None:
+        all_rates = requests.get(
+            url='https://bank.gov.ua/NBUStatService/v1/statdirectory/' \
+            'exchange?json',
+        ).json()
 
-    rates = [
-        all_rates[32],  # USD
-        all_rates[39],  # EUR
-        all_rates[41],  # PLN
-        all_rates[31],  # GBP
-        all_rates[26],  # CHF
-        all_rates[12],  # JPY
-        all_rates[5],   # CZK
-    ]
-    
+        currencies = {'USD', 'EUR', 'PLN', 'GBP', 'CHF', 'JPY', 'CZK'}
+        rates = [rate for rate in all_rates if rate['cc'] in currencies]
+        
+        cache.set('rates', rates, 60 * 10)
+
     return render(request, 'rates/rates.html', {'rates': rates})

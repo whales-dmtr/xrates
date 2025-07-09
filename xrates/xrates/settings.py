@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,7 +81,6 @@ WSGI_APPLICATION = 'xrates.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-load_dotenv()
 
 DATABASES = {
     'default': {
@@ -143,3 +144,21 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.getenv('REDIS_LOCATION'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'max_connections': 100,
+                'retry_on_timeout': True,
+            }
+        }
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
