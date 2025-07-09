@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
+from django.core.cache import cache
 import requests
 
 from converter.forms import ConverterForm
@@ -7,11 +8,13 @@ from converter.models import ConverterHistory
 
 
 def get_currency_rate(currency):
-    all_rates = requests.get(
-        url='https://bank.gov.ua/NBUStatService/v1/statdirectory/' \
-        'exchange?json',
-    ).json()
-    rate = next((cur for cur in all_rates if cur['cc'] == currency), None)
+    rates = cache.get('rates')
+    if rates is None:
+        rates = requests.get(
+            url='https://bank.gov.ua/NBUStatService/v1/statdirectory/' \
+            'exchange?json',
+        ).json()
+    rate = next((cur for cur in rates if cur['cc'] == currency))
     return rate['rate']
 
 
