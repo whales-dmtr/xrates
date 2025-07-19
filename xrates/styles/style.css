@@ -48,7 +48,6 @@ li form button {
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* Поведение при наведении */
 li form button:hover {
     background-color: #111;
 }
