@@ -1,26 +1,22 @@
 from django.shortcuts import render
-from django.core.exceptions import PermissionDenied
 from django.core.cache import cache
-import requests
+from django.contrib.auth.decorators import login_required
 
 from converter.forms import ConverterForm
 from converter.models import ConverterHistory
+from rates.views import get_rates_from_api
 
 
 def get_currency_rate(currency):
     rates = cache.get('rates')
     if rates is None:
-        rates = requests.get(
-            url='https://bank.gov.ua/NBUStatService/v1/statdirectory/' \
-            'exchange?json',
-        ).json()
+        rates = get_rates_from_api()
     rate = next((cur for cur in rates if cur['cc'] == currency))
     return rate['rate']
 
 
+@login_required
 def converter_view(request):
-    if request.user.is_anonymous:
-        raise PermissionDenied()
     hryvnias_amount, result, currency = None, None, None
 
     if request.method == 'POST':
@@ -50,9 +46,8 @@ def converter_view(request):
     )
 
 
+@login_required
 def convert_history_view(request):
-    if request.user.is_anonymous:
-        raise PermissionDenied()
     history = ConverterHistory.objects.all().filter(
         user_id=request.user.id).order_by('-pk')
     
