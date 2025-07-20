@@ -4,7 +4,7 @@ from django.http import QueryDict
 from django.contrib.auth.models import User
 
 from converter.views import converter_view
-from rates.tests import all_rates
+from rates.tests.unit.test_rates import all_rates
 
 
 class ConverterTest(TestCase):
