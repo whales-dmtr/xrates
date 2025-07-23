@@ -12,21 +12,23 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href={% url "rates" %}>Rates</a></li>
-        <li><a href={% url "users:login" %}>Login</a></li>
-        <li><a href={% url "users:register" %}>Register</a></li>
+    <ul class="nav-links">
+        <li class="links"><a class="nav-item" href="{% url 'rates' %}">Rates</a></li>
+        <li class="links"><a class="nav-item" href="{% url 'users:login' %}">Login</a></li>
+        <li class="links"><a class="nav-item" href="{% url 'users:register' %}">Register</a></li>
         {% if user.is_authenticated %}
-        <li><a href={% url "converter:converter" %}>Converter</a></li>
-        <li><a href={% url "converter:history" %}>Convert History</a></li>
-        <li>
-        <form action={% url "users:logout" %} method="post">
-            {% csrf_token %}
-            <button>Logout</button>
-        </form>
+        <li class="links"><a class="nav-item" href="{% url 'converter:converter' %}">Converter</a></li>
+        <li class="links"><a class="nav-item" href="{% url 'converter:history' %}">Convert History</a></li>
+        <li class="links">
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="nav-item">Logout</button>
+            </form>
         </li>
         {% endif %}
     </ul>
+    <div class="content">
     {% block content %} {% endblock %}
+    </div>
 </body>
 </html>

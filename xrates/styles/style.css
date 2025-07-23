@@ -1,53 +1,69 @@
-ul {
-    list-style-type: none;
+/* Обнуляем отступы */
+body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #333;
 }
 
-li {
-    float: left;
-}
-
-li a {
-    display: block;
+/* Навбар */
+.nav-links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.75rem 1.5rem;
+    background-color: #4a6f3c;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+/* Элементы */
+.nav-links .links {
+    display: flex;
+    align-items: center;
+}
+
+/* Общий стиль для ссылок и кнопки */
+.nav-item {
+    color: white;
     text-decoration: none;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
+/* Эффект при наведении */
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-body {
-    background-color: grey;
-    color: darkblue;
-    font-size: large;
-}
-
-li form {
-    display: block;
+/* Убираем отступы формы */
+.nav-links .links form {
     margin: 0;
 }
 
-li form button {
-    background-color: #333;
-    color: white;
-    padding: 14px 16px;
-    border: none;
-    cursor: pointer;
-    font-size: inherit;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    font-family: 'Times New Roman', Times, serif;
+
+.content {
+    /* background-color: blanchedalmond; */
+    margin-inline: 2%;
 }
 
-li form button:hover {
-    background-color: #111;
+table {
+    border: 1px solid black;
+}
+
+td,
+th {
+    padding-inline: 20px;
+    font-size: x-large;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
 }
