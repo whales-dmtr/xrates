@@ -1,17 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 <title>Converter</title>
 {% endblock %}
 
-{% block content%}
+{% block links %}
+<link rel="stylesheet" href="{% static 'converter/styles/converter.css' %}">
+{% endblock %}
+
+{% block content %}
 <h1>Converter</h1>
-<form action={% url "converter:converter" %} method='post'>
+<form action="{% url 'converter:converter' %}" method="post" class="converter">
     {% csrf_token %}
     {{ form }}
-    <button>Submit</button>
+    <button class="submit-btn">Submit</button>
 </form>
 {% if result %}
-    <p>Converted amount: {{ hryvnias_amount }} UAH = {{ result }} {{ currency }}</p>
+    <p class="result">
+        Converted amount: {{ hryvnias_amount }} UAH = {{ result }} {{ currency }}
+    </p>
 {% endif %}
 {% endblock %}

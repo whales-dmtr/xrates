@@ -47,3 +47,23 @@ body {
 .nav-links .links form {
     margin: 0;
 }
+
+
+.content {
+    /* background-color: blanchedalmond; */
+    margin-inline: 2%;
+}
+
+table {
+    border: 1px solid black;
+}
+
+td,
+th {
+    padding-inline: 20px;
+    font-size: x-large;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
