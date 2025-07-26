@@ -32,7 +32,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-family: inherit;
+    /* font-family: inherit; */
     font-size: 1rem;
     border-radius: 4px;
     transition: background-color 0.2s;
@@ -66,4 +66,17 @@ th {
 
 tr:nth-child(even) {
     background-color: #D6EEEE;
+}
+
+
+/* static/css/base.css */
+@font-face {
+    font-family: 'Styrene B';
+    src: url('fonts/StyreneB-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Styrene B', sans-serif;
 }
