@@ -1,6 +1,8 @@
 services:
   app:
-    image: whalesdmtr/xrates-app
+    # image: whalesdmtr/xrates-app
+    container_name: xrates-app
+    build: .
     ports:
       - "8000:8000"
     environment:

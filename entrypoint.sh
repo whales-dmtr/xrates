@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
+set -e  
 
-echo "Starting app..."
-exec sh -c '
-python3 xrates/manage.py migrate && 
-python xrates/manage.py collectstatic --noinput &&
-python3 xrates/manage.py runserver 0.0.0.0:8000
-'
+cd xrates
+
+python manage.py migrate --noinput
+python manage.py collectstatic --noinput
+
+exec gunicorn --bind 0.0.0.0:8000 --workers 3 xrates.wsgi:application
