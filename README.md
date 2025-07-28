@@ -58,7 +58,7 @@ docker compose up
 
 After running the project (e.g., with Docker Compose or `manage.py runserver`), open your browser and go to:
 
-**http://localhost:8000/**
+**http://localhost:8080/**
 
 This is the default URL where the site will be accessible locally.
 
