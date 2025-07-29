@@ -1,0 +1,22 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run Docker Compose 
+      run: docker compose up -d
+
+    - name: Run tests
+      run: docker exec -i xrates-app sh -c "cd /app/xrates && ./manage.py test"
+      
