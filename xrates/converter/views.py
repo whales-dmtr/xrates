@@ -19,7 +19,7 @@ def get_currency_rate(currency):
 
 @login_required
 def converter_view(request):
-    hryvnias_amount, result, currency = None, None, None
+    hryvnias_amount, result, currency, rate = None, None, None, None
 
     if request.method == 'POST':
         currency = request.POST['currency']
@@ -49,7 +49,8 @@ def converter_view(request):
         {'form': converter_form, 
          'result': result, 
          'currency': currency,
-         'hryvnias_amount': hryvnias_amount}
+         'hryvnias_amount': hryvnias_amount,
+         'rate': rate}
     )
 
 

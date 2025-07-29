@@ -20,5 +20,8 @@
     <p class="result">
         Converted amount: {{ hryvnias_amount }} UAH = {{ result }} {{ currency }}
     </p>
+    <form>
+        <input id="rate" type="hidden" name="rate" value="{{ rate }}">
+    </form>
 {% endif %}
 {% endblock %}
