@@ -24,4 +24,4 @@ class ConverterTest(TestCase):
         
         response = converter_view(mocked_request)
 
-        self.assertContains(response, '100 UAH = 2.4 USD')
+        self.assertContains(response, '100 UAH = 2.40 USD')

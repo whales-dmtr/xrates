@@ -1,3 +1,5 @@
+from decimal import Decimal, ROUND_HALF_UP, getcontext
+
 from django.shortcuts import render
 from django.core.cache import cache
 from django.contrib.auth.decorators import login_required
@@ -23,7 +25,12 @@ def converter_view(request):
         currency = request.POST['currency']
         rate = get_currency_rate(currency)
         hryvnias_amount = request.POST['hryvnias_amount']
-        result = round(float(hryvnias_amount) / float(rate), 2)
+
+        # boiler plate for rounding number
+        getcontext().rounding = ROUND_HALF_UP  
+
+        converted_curr = Decimal(hryvnias_amount) / Decimal(rate)
+        result = converted_curr.quantize(Decimal('0.01'))
 
         convert_in_history = ConverterHistory(
             uah_amount=hryvnias_amount,

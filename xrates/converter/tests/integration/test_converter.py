@@ -27,6 +27,6 @@ class ConverterTest(AuthTestCase):
         
         self.assertContains(
             response,
-            text="100 UAH = 2.4 USD"
+            text="100 UAH = 2.39 USD"
         )
 
