@@ -25,16 +25,6 @@ jobs:
       DJANGO_DEBUG: 0
       DJANGO_SECRET: secret
 
-    # services:
-    #   db:
-    #     image: postgres:14.18-alpine3.21
-    #     env:
-    #       POSTGRES_DB: xrates
-    #       POSTGRES_USER: postgres
-    #       POSTGRES_PASSWORD: postgres
-    #     ports:
-    #       - 5432:5432
-
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -49,9 +39,6 @@ jobs:
 
     - name: Set up redis
       uses: shogo82148/actions-setup-redis@v1
-      # with:
-      #   distribution: "valkey"
-      #   redis-version: "7.2"
 
     - name: Set up Python
       uses: actions/setup-python@v2
