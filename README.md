@@ -25,28 +25,7 @@ git clone https://github.com/whales-dmtr/xrates.git
 cd xrates
 ```
 
-### 2. Create .env file
-
-Copy the example .env.example or create manually:
-
-```env
-# .env
-DB_NAME=xrates
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_HOST=localhost
-DB_PORT=5432
-
-REDIS_HOST=localhost
-REDIS_PORT=6379
-REDIS_DB=0
-REDIS_LOCATION=redis://localhost:6379/0
-
-DJANGO_DEBUG=0  
-DJANGO_SECRET=your_secret_key_here
-```
-
-### 3. Run with Docker Compose 
+### 2. Run with Docker Compose 
 
 ```bash
 docker compose up
