@@ -3,27 +3,28 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 from django.shortcuts import render
 from django.core.cache import cache
 from django.contrib.auth.decorators import login_required
+from asgiref.sync import sync_to_async
 
 from converter.forms import ConverterForm
 from converter.models import ConverterHistory
-from rates.views import get_rates_from_api
+from rates.views import aget_rates_from_api
 
 
-def get_currency_rate(currency):
+async def aget_currency_rate(currency):
     rates = cache.get('rates')
     if rates is None:
-        rates = get_rates_from_api()
+        rates = await aget_rates_from_api()
     rate = next((cur for cur in rates if cur['cc'] == currency))
     return rate['rate']
 
 
 @login_required
-def converter_view(request):
+async def converter_view(request):
     hryvnias_amount, result, currency, rate = None, None, None, None
 
     if request.method == 'POST':
         currency = request.POST['currency']
-        rate = get_currency_rate(currency)
+        rate = await aget_currency_rate(currency)
         hryvnias_amount = request.POST['hryvnias_amount']
 
         # boiler plate for rounding number
@@ -43,7 +44,7 @@ def converter_view(request):
         
     converter_form = ConverterForm()
 
-    return render(
+    return sync_to_async(render)(
         request, 
         'converter/converter.html', 
         {'form': converter_form, 
