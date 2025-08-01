@@ -16,7 +16,7 @@
         <li class="links"><a class="nav-item" href="{% url 'rates' %}">Rates</a></li>
         <li class="links"><a class="nav-item" href="{% url 'users:login' %}">Login</a></li>
         <li class="links"><a class="nav-item" href="{% url 'users:register' %}">Register</a></li>
-        {% if user.is_authenticated %}
+        {% if is_auth %}
         <li class="links"><a class="nav-item" href="{% url 'converter:converter' %}">Converter</a></li>
         <li class="links"><a class="nav-item" href="{% url 'converter:history' %}">Convert History</a></li>
         <li class="links">
