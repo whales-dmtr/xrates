@@ -1,0 +1,28 @@
+/* Обертка для прокрутки */
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* плавный скролл на iOS */
+    margin-bottom: 1rem;
+}
+
+/* Таблица занимает всю ширину родителя */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    /* минимальная ширина, чтобы включилась прокрутка */
+}
+
+.header-fields,
+.fields {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 1rem;
+}
+
+/* Можно добавить для четности строк */
+.history-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

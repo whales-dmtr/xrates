@@ -80,3 +80,78 @@ tr:nth-child(even) {
 body {
     font-family: 'Styrene B', sans-serif;
 }
+
+/* Скрываем кнопку гамбургера на десктопе */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+
+    /* Показываем кнопку гамбургера */
+    .menu-toggle {
+        display: block;
+        background-color: #4a6f3c;
+        position: fixed;
+        top: 0.5rem;
+        right: 1rem;
+        z-index: 1001;
+        border-radius: 4px;
+    }
+
+    /* Прячем меню по умолчанию */
+    .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 3.5rem;
+        /* под кнопкой */
+        right: 0;
+        background-color: #4a6f3c;
+        width: 70%;
+        max-width: 300px;
+        height: calc(100vh - 3.5rem);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        padding: 1rem;
+        gap: 1rem;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    /* Когда меню активно — показываем */
+    .nav-links.nav-active {
+        transform: translateX(0);
+    }
+
+    /* Стили для пунктов меню */
+    .nav-links .links {
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-item {
+        display: block;
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.2rem;
+    }
+
+    /* Скрываем вертикальные разделители | на мобильных */
+    .nav-links>li+li::before {
+        content: none;
+    }
+
+    /* Подвинуть контент вниз, чтобы кнопка и меню не перекрывали */
+    .content {
+        margin-top: 4.5rem;
+        margin-inline: 5%;
+    }
+}

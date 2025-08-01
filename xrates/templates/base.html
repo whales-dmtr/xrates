@@ -12,13 +12,13 @@
 </head>
 
 <body>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links">
-        <li class="links"><a class="nav-item" href="{% url 'rates' %}">Rates</a></li>
-        <li class="links"><a class="nav-item" href="{% url 'users:login' %}">Login</a></li>
-        <li class="links"><a class="nav-item" href="{% url 'users:register' %}">Register</a></li>
+        <li class="links"><a class="nav-item" href="{% url 'users:login' %}">Login/Register</a></li> 
+        <li class="links"><a class="nav-item" href="{% url 'rates' %}">Rates</a></li> 
         {% if user.is_authenticated %}
-        <li class="links"><a class="nav-item" href="{% url 'converter:converter' %}">Converter</a></li>
-        <li class="links"><a class="nav-item" href="{% url 'converter:history' %}">Convert History</a></li>
+        <li class="links"><a class="nav-item" href="{% url 'converter:converter' %}">Converter</a></li> 
+        <li class="links"><a class="nav-item" href="{% url 'converter:history' %}">Convert History</a></li> 
         <li class="links">
             <form action="{% url 'users:logout' %}" method="post">
                 {% csrf_token %}
@@ -30,5 +30,14 @@
     <div class="content">
     {% block content %} {% endblock %}
     </div>
+
+    <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+    });
+    </script>
 </body>
 </html>
